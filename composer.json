@@ -2,6 +2,7 @@
     "name": "aliirfaan/citronel-error-catalogue",
     "description": "Maintain an error catalogue code to display in error messages for better error reporting and support.",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "aliirfaan",
