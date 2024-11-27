@@ -1,0 +1,26 @@
+{
+    "name": "aliirfaan/citronel-error-catalogue",
+    "description": "Maintain an error catalogue code to display in error messages for better error reporting and support.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "aliirfaan",
+            "email": "aliirfaan.freelance@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "aliirfaan\\CitronelErrorCatalogue\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "aliirfaan\\CitronelErrorCatalogue\\CitronelErrorCatalogueProvider"
+            ]
+        }
+    }
+}
