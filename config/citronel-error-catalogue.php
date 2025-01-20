@@ -98,6 +98,25 @@ return [
         ],
         // process errors
         'process' => [
+            'back_office' => [
+                'key' => 'back_office',
+                'code' => 'BKO',
+                'sub_process' => [
+                    'verify_key' => [
+                        'key' => 'verify_key',
+                        'name' => 'back_office.verify_key',
+                        'code' => '1',
+                        'events' => [
+                            'invalid_key' => [
+                                'key' => 'invalid_key',
+                                'name' => 'verify_key.invalid_key',
+                                'code' => '1',
+                                'code_status' => null
+                            ],
+                        ],
+                    ],
+                ]
+            ],
             'customer' => [
                 'key' => 'customer',
                 'code' => '101',
@@ -160,6 +179,32 @@ return [
                                 'key' => 'otp_invalid_expired',
                                 'name' => 'otp_invalid_expired',
                                 'code' => '4',
+                                'code_status' => null
+                            ],
+                        ],
+                    ],
+                    'is_active_check' => [
+                        'key' => 'is_active_check',
+                        'name' => 'is_active_check',
+                        'code' => '7',
+                        'events' => [
+                            'is_not_active' => [
+                                'key' => 'is_not_active',
+                                'name' => 'is_not_active',
+                                'code' => '1',
+                                'code_status' => null
+                            ],
+                        ],
+                    ],
+                    'is_verified_check' => [
+                        'key' => 'is_verified_check',
+                        'name' => 'is_verified_check',
+                        'code' => '8',
+                        'events' => [
+                            'is_not_verified' => [
+                                'key' => 'is_not_verified',
+                                'name' => 'is_not_verified',
+                                'code' => '1',
                                 'code_status' => null
                             ],
                         ],
