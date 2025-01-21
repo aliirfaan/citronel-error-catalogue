@@ -23,5 +23,9 @@
                 "aliirfaan\\CitronelErrorCatalogue\\CitronelErrorCatalogueProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "orchestra/testbench": "^9.9"
     }
 }

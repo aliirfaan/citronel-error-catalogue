@@ -31,7 +31,7 @@ class CitronelErrorCatalogueService
         $code = null;
 
         $configArray = config($configKey . '.process');
-        if (array_key_exists($mainProcessKey, $configArray)) {
+        if (is_array($configArray) && array_key_exists($mainProcessKey, $configArray)) {
             $mainProcess = $configArray[$mainProcessKey];
             $code = array_key_exists('code', $mainProcess) ? $mainProcess['code']: null;
 
