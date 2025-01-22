@@ -31,7 +31,7 @@ class CitronelErrorCatalogueService
         $subProcess = null;
         $code = null;
 
-        $configArray = $errorCatalogue['process'];
+        $configArray = array_key_exists('process', $errorCatalogue) ? $errorCatalogue['process'] : [];
         if (is_array($configArray) && array_key_exists($mainProcessKey, $configArray)) {
             $mainProcess = $configArray[$mainProcessKey];
             $code = array_key_exists('code', $mainProcess) ? $mainProcess['code']: null;
@@ -72,10 +72,11 @@ class CitronelErrorCatalogueService
 
         // Load the external error configurations
         $externalErrorCatalogues = config('citronel-error-config.citronel_error_catalogue_external_catalogues', []);
-
+        
         foreach ($externalErrorCatalogues as $externalErrorCatalogue) {
-            if (is_array($externalErrorCatalogue) && array_key_exists('process', $externalErrorCatalogue)) {
-                $errorCatalogue['process'] = array_merge($errorCatalogue['process'], config($externalErrorCatalogue)['process']);
+            $externalErrorCatalogueConfig = config($externalErrorCatalogue);
+            if (is_array($externalErrorCatalogueConfig) && array_key_exists('process', $externalErrorCatalogueConfig)) {
+                $errorCatalogue['process'] = array_merge($errorCatalogue['process'], $externalErrorCatalogueConfig['process']);
             }
         }
 
