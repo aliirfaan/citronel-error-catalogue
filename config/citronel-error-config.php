@@ -11,7 +11,7 @@ return [
     | citronel_error_catalogue_external_errors | Array
     | List of external error catalogues to include in the error catalogue.
     | The external error catalogues should be in the format of the error catalogue.
-    | Example: ['first-config, 'second-config')]
+    | Example: ['first-config, 'second-config']
     */
     'citronel_error_catalogue_lang_file' => env('CITRONEL_ERROR_CATALOGUE_LANG_FILE', null),
     'citronel_error_code_separator' => env('CITRONEL_ERROR_CODE_SEPARATOR', '-'),

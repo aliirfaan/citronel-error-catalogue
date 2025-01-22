@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com) and this project adheres to [Semantic Versioning](https://semver.org).
 
-## 2.0.0 - 2025-01-21
+## 2.0.0 - 2025-01-22
 
 ### Added
 
@@ -24,28 +24,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com) and this p
 
 - citronel_error_catalogue_name config
 - catalogueConfigFile() in ErrorCatalogue trait
-
-### Fixed
-
-- Nothing
-
-## 1.x.x - 2024-10-11
-
-### Added
-
-- Nothing
-
-### Changed
-
-- Nothing
-
-### Deprecated
-
-- Nothing
-
-### Removed
-
-- Nothing
 
 ### Fixed
 

@@ -31,7 +31,7 @@ or by using only `php artisan vendor:publish` and select the `aliirfaan\Citronel
 ## Configuration
 
 This package publishes two configuration files. Please view configuration files for documentation.
-* citronel-error-catalogue.php - the error catalogue
+* citronel-general-error-catalogue.php - the error catalogue
 * citronel-error-config.php - package configuration
 
 ## Commands
@@ -50,6 +50,12 @@ This package publishes two configuration files. Please view configuration files 
 
 ## Usage
 
+### Add external configurations
+* Add configuration file names in 'citronel_error_catalogue_external_catalogues' => []
+* Example: 'citronel_error_catalogue_external_catalogues' => ['first-config, 'second-config']
+* **The exteral configuration must be the same format as general error catalogue.**
+
+### Code usage
 ```php
 <?php
 

@@ -15,7 +15,7 @@ class CitronelErrorCatalogueServiceTest extends TestCase
         parent::setUp();
         $this->service = new CitronelErrorCatalogueService();
     }
-    /*
+    
     public function testGenerateCodeFromCatalogue()
     {
         // Mock the config values
@@ -168,7 +168,7 @@ class CitronelErrorCatalogueServiceTest extends TestCase
 
         $this->assertEquals('101-1-001-EXTRA109', $result['code']);
         $this->assertEquals('otp_sent', $result['status']);
-    }*/
+    }
 
     public function testErrorCatalogueMerging()
     {
@@ -258,7 +258,7 @@ class CitronelErrorCatalogueServiceTest extends TestCase
         $this->assertEquals('external_1', $errorCatalogue['process']['external_1']['key']);
 
         $this->assertArrayHasKey('external_2', $errorCatalogue['process']);
-        $this->assertEquals('external_2', $errorCatalogue['process']['external_2']['name']);
+        $this->assertEquals('external_2', $errorCatalogue['process']['external_2']['key']);
 
         $this->assertArrayHasKey('create', $errorCatalogue['process']['external_1']['sub_process']);
     }
