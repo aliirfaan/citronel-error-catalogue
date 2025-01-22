@@ -20,7 +20,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '-',
             'citronel_error_catalogue.process' => [
                 'customer' => [
@@ -58,7 +57,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '-',
             'citronel_error_catalogue.process' => [
                 'customer' => [
@@ -88,7 +86,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '-',
             'citronel_error_catalogue.process' => [
                 'customer' => [
@@ -118,7 +115,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '/',
             'citronel_error_catalogue.process' => [
                 'customer' => [
@@ -148,7 +144,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '-',
             'citronel_error_catalogue.process' => [
                 'customer' => [
@@ -179,7 +174,6 @@ class CitronelErrorCatalogueServiceTest extends TestCase
     {
         // Mock the config values
         Config::set([
-            'citronel-error-config.citronel_error_catalogue_name' => 'citronel_error_catalogue',
             'citronel-error-config.citronel_error_code_separator' => '-',
             'citronel-general-error-catalogue.process' => [
                 'customer' => [
@@ -250,10 +244,7 @@ class CitronelErrorCatalogueServiceTest extends TestCase
         ]);
 
         // Load the merged error catalogue
-        // get config from citronel-general-error-catalogue.php
-        $errorCatalogue = Config::get('citronel-error-catalogue');
-
-        dd($errorCatalogue);
+        $errorCatalogue = $this->service->getMergedConfig();
 
         // Assert that the general error is present
         $this->assertArrayHasKey('customer', $errorCatalogue['process']);

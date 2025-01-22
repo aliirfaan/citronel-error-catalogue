@@ -10,9 +10,6 @@ class CitronelErrorCatalogueProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/citronel-error-catalogue.php', 'citronel-error-catalogue'
-        );
-        $this->mergeConfigFrom(
             __DIR__.'/../config/citronel-error-config.php', 'citronel-error-config'
         );
         $this->mergeConfigFrom(
@@ -28,7 +25,6 @@ class CitronelErrorCatalogueProvider extends \Illuminate\Support\ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/citronel-error-catalogue.php' => config_path('citronel-error-catalogue.php'),
             __DIR__.'/../config/citronel-error-config.php' => config_path('citronel-error-config.php'),
             __DIR__.'/../config/citronel-general-error-catalogue.php' => config_path('citronel-general-error-catalogue.php'),
         ]);

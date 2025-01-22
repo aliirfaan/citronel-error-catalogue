@@ -22,7 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com) and this p
 
 ### Removed
 
-- Nothing
+- citronel_error_catalogue_name config
+- catalogueConfigFile() in ErrorCatalogue trait
 
 ### Fixed
 

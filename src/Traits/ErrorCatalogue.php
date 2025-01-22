@@ -2,16 +2,19 @@
 
 namespace aliirfaan\CitronelErrorCatalogue\Traits;
 
+use aliirfaan\CitronelErrorCatalogue\Services\CitronelErrorCatalogueService;
+
 trait ErrorCatalogue
 {
     /**
-     * Method catalogueConfigFile
+     * Get the error catalogue.
      *
-     * @return string
+     * @return array
      */
-    public function catalogueConfigFile()
+    public function getErrorCatalogue()
     {
-        return config('citronel-error-config.citronel_error_catalogue_name');
+        $service = new CitronelErrorCatalogueService();
+        return $service->getMergedConfig();
     }
     
     /**
@@ -31,7 +34,7 @@ trait ErrorCatalogue
      */
     public function validationErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.validation_error');
+        $details = $this->getErrorCatalogue()['validation_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.invalid_data_provided';
 
         return $details;
@@ -44,7 +47,7 @@ trait ErrorCatalogue
      */
     public function databaseErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.database_error');
+        $details = $this->getErrorCatalogue()['database_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.database_error';
 
         return $details;
@@ -57,7 +60,7 @@ trait ErrorCatalogue
      */
     public function unknownErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.unknown_error');
+        $details = $this->getErrorCatalogue()['unknown_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.unknown_error';
 
         return $details;
@@ -70,7 +73,7 @@ trait ErrorCatalogue
      */
     public function processingErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.processing_error');
+        $details = $this->getErrorCatalogue()['processing_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.processing_error';
 
         return $details;
@@ -83,7 +86,7 @@ trait ErrorCatalogue
      */
     public function recordNotFoundErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.record_not_found');
+        $details = $this->getErrorCatalogue()['record_not_found'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.record_not_found';
 
         return $details;
@@ -96,7 +99,7 @@ trait ErrorCatalogue
      */
     public function authorizationErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.authorization_error');
+        $details = $this->getErrorCatalogue()['authorization_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.authorization_error';
 
         return $details;
@@ -109,7 +112,7 @@ trait ErrorCatalogue
      */
     public function authenticationErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.authentication_error');
+        $details = $this->getErrorCatalogue()['authentication_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.authentication_error';
 
         return $details;
@@ -122,7 +125,7 @@ trait ErrorCatalogue
      */
     public function externalConnectionIssueErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.external_connection_issue');
+        $details = $this->getErrorCatalogue()['external_connection_issue'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.external_connection_issue';
 
         return $details;
@@ -135,7 +138,7 @@ trait ErrorCatalogue
      */
     public function externalTechnicalIssueErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.external_technical_issue');
+        $details = $this->getErrorCatalogue()['external_technical_issue'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.external_technical_issue';
 
         return $details;
@@ -148,7 +151,7 @@ trait ErrorCatalogue
      */
     public function externalServerErrorErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.external_server_error');
+        $details = $this->getErrorCatalogue()['external_server_error'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.external_server_error';
 
         return $details;
@@ -161,7 +164,7 @@ trait ErrorCatalogue
      */
     public function externalTooManyRedirectsErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.external_too_many_redirects');
+        $details = $this->getErrorCatalogue()['external_too_many_redirects'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.external_too_many_redirects';
 
         return $details;
@@ -174,7 +177,7 @@ trait ErrorCatalogue
      */
     public function externalEmptyResponseErrorCatalogue()
     {
-        $details = config($this->catalogueConfigFile() . '.external_empty_response');
+        $details = $this->getErrorCatalogue()['external_empty_response'];
         $details['lang'] = $this->catalogueLanguageFile() . 'messages.external_empty_response';
 
         return $details;

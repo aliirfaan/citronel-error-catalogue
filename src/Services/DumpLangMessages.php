@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\File;
 
 class DumpLangMessages
 {
+    protected $citronelErrorCatalogueService;
+
+    public function __construct(CitronelErrorCatalogueService $citronelErrorCatalogueService)
+    {
+        $this->citronelErrorCatalogueService = $citronelErrorCatalogueService;
+    }
+    
     /**
      * Method dump
      *

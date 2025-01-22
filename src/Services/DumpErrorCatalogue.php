@@ -3,9 +3,17 @@
 namespace aliirfaan\CitronelErrorCatalogue\Services;
 
 use Illuminate\Support\Facades\Storage;
+use aliirfaan\CitronelErrorCatalogue\Services\CitronelErrorCatalogueService;
 
 class DumpErrorCatalogue
 {
+    protected $citronelErrorCatalogueService;
+
+    public function __construct(CitronelErrorCatalogueService $citronelErrorCatalogueService)
+    {
+        $this->citronelErrorCatalogueService = $citronelErrorCatalogueService;
+    }
+
     /**
      * Method dump
      *
@@ -17,7 +25,7 @@ class DumpErrorCatalogue
     public function dumpCSV ($filename, $folder)
     {
         try {
-            $config = config('citronel-error-config.citronel_error_catalogue_name');
+            $config = $this->citronelErrorCatalogueService->getMergedConfig();
             $dumped = [];
             $mainProcessArr = $config['process'];
             $headers = ['process_key', 'process_code', 'sub_process_key', 'sub_process_code', 'event_key', 'event_code', 'event_name', 'event_id'];

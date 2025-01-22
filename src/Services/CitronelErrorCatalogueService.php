@@ -2,6 +2,7 @@
 
 namespace aliirfaan\CitronelErrorCatalogue\Services;
 
+
 class CitronelErrorCatalogueService
 {
     /**
@@ -22,7 +23,7 @@ class CitronelErrorCatalogueService
             'status' => null
         ];
 
-        $configKey = config('citronel-error-config.citronel_error_catalogue_name');
+        $errorCatalogue = $this->getMergedConfig();
 
         $separator = config('citronel-error-config.citronel_error_code_separator');
 
@@ -30,7 +31,7 @@ class CitronelErrorCatalogueService
         $subProcess = null;
         $code = null;
 
-        $configArray = config($configKey . '.process');
+        $configArray = $errorCatalogue['process'];
         if (is_array($configArray) && array_key_exists($mainProcessKey, $configArray)) {
             $mainProcess = $configArray[$mainProcessKey];
             $code = array_key_exists('code', $mainProcess) ? $mainProcess['code']: null;
@@ -56,5 +57,28 @@ class CitronelErrorCatalogueService
         $processCode['code'] = $code;
 
         return $processCode;
+    }
+    
+    /**
+     * Method getMergedConfig
+     *
+     * get general error catalogue and merge with external error catalogues if any
+     *
+     * @return array
+     */
+    public function getMergedConfig()
+    {
+        $errorCatalogue = config('citronel-general-error-catalogue', []);
+
+        // Load the external error configurations
+        $externalErrorCatalogues = config('citronel-error-config.citronel_error_catalogue_external_catalogues', []);
+
+        foreach ($externalErrorCatalogues as $externalErrorCatalogue) {
+            if (is_array($externalErrorCatalogue) && array_key_exists('process', $externalErrorCatalogue)) {
+                $errorCatalogue['process'] = array_merge($errorCatalogue['process'], config($externalErrorCatalogue)['process']);
+            }
+        }
+
+        return $errorCatalogue;
     }
 }
