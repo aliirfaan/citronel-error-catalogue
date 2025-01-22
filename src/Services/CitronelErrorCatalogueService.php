@@ -82,4 +82,38 @@ class CitronelErrorCatalogueService
 
         return $errorCatalogue;
     }
+
+    public function getMainProcess($mainProcessKey)
+    {
+        $errorCatalogue = $this->getMergedConfig();
+        $configArray = array_key_exists('process', $errorCatalogue) ? $errorCatalogue['process'] : [];
+    
+        if (is_array($configArray) && array_key_exists($mainProcessKey, $configArray)) {
+            return $configArray[$mainProcessKey];
+        }
+    
+        return null;
+    }
+
+    public function getSubProcess($mainProcessKey, $subProcessKey)
+    {
+        $mainProcess = $this->getMainProcess($mainProcessKey);
+    
+        if ($mainProcess && array_key_exists('sub_process', $mainProcess) && array_key_exists($subProcessKey, $mainProcess['sub_process'])) {
+            return $mainProcess['sub_process'][$subProcessKey];
+        }
+    
+        return null;
+    }
+
+    public function getSubProcessEvent($mainProcessKey, $subProcessKey, $eventKey)
+    {
+        $subProcess = $this->getSubProcess($mainProcessKey, $subProcessKey);
+    
+        if ($subProcess && array_key_exists('events', $subProcess) && array_key_exists($eventKey, $subProcess['events'])) {
+            return $subProcess['events'][$eventKey];
+        }
+    
+        return null;
+    }
 }

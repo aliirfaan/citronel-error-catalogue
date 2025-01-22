@@ -262,4 +262,89 @@ class CitronelErrorCatalogueServiceTest extends TestCase
 
         $this->assertArrayHasKey('create', $errorCatalogue['process']['external_1']['sub_process']);
     }
+
+    public function testGetMainProcess()
+    {
+        // Mock the config values
+        Config::set([
+            'citronel-error-config.citronel_error_code_separator' => '-',
+            'citronel-general-error-catalogue.process' => [
+                'customer' => [
+                    'code' => '101',
+                    'sub_process' => [
+                        'registration' => [
+                            'code' => '1',
+                            'events' => [
+                                'otp_sent' => [
+                                    'code' => '001',
+                                    'code_status' => 'otp_sent'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $result = $this->service->getMainProcess('customer');
+
+        $this->assertEquals('101', $result['code']);
+    }
+
+    public function testGetSubProcess()
+    {
+        // Mock the config values
+        Config::set([
+            'citronel-error-config.citronel_error_code_separator' => '-',
+            'citronel-general-error-catalogue.process' => [
+                'customer' => [
+                    'code' => '101',
+                    'sub_process' => [
+                        'registration' => [
+                            'code' => '1',
+                            'events' => [
+                                'otp_sent' => [
+                                    'code' => '001',
+                                    'code_status' => 'otp_sent'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $result = $this->service->getSubProcess('customer', 'registration');
+
+        $this->assertEquals('1', $result['code']);
+    }
+
+    public function getSubProcessEvent()
+    {
+        // Mock the config values
+        Config::set([
+            'citronel-error-config.citronel_error_code_separator' => '-',
+            'citronel-general-error-catalogue.process' => [
+                'customer' => [
+                    'code' => '101',
+                    'sub_process' => [
+                        'registration' => [
+                            'code' => '1',
+                            'events' => [
+                                'otp_sent' => [
+                                    'code' => '001',
+                                    'code_status' => 'otp_sent'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        $result = $this->service->getSubProcessEvent('customer', 'registration', 'otp_sent');
+
+        $this->assertEquals('otp_sent', $result['code_status']);
+
+    }
 }
